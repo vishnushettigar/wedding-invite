@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dheeraj & Kavyashri - Royal Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+Kannada:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #03130d;
+            --card-bg: radial-gradient(circle at 50% 30%, #0a3325 0%, #041a12 100%);
+            --text-gold: #f3de8a;
+            --text-gold-heading: #fce79e;
+            --border-gold: rgba(212, 175, 55, 0.5);
+            --card-border: #d4af37;
+            --text-light: #fef0ab;
+            --text-muted: rgba(254, 240, 171, 0.75);
+            --inner-box-bg: rgba(0, 0, 0, 0.45);
+        }
+
+        /* Color Theme Options */
+        .color-emerald {
+            --bg-color: #03130d;
+            --card-bg: radial-gradient(circle at 50% 30%, #0a3325 0%, #041a12 100%);
+            --text-gold: #f3de8a;
+            --text-gold-heading: #fce79e;
+            --border-gold: rgba(212, 175, 55, 0.5);
+            --card-border: #d4af37;
+            --text-light: #fef0ab;
+            --text-muted: rgba(254, 240, 171, 0.75);
+            --inner-box-bg: rgba(0, 0, 0, 0.45);
+        }
+
+        .color-ruby {
+            --bg-color: #1a0307;
+            --card-bg: radial-gradient(circle at 50% 30%, #3d0a12 0%, #1a0206 100%);
+            --text-gold: #fde68a;
+            --text-gold-heading: #fff1b8;
+            --border-gold: rgba(234, 179, 8, 0.5);
+            --card-border: #eab308;
+            --text-light: #fef3c7;
+            --text-muted: rgba(254, 243, 199, 0.75);
+            --inner-box-bg: rgba(20, 0, 5, 0.5);
+        }
+
+        .color-sapphire {
+            --bg-color: #030d1a;
+            --card-bg: radial-gradient(circle at 50% 30%, #0a2342 0%, #020914 100%);
+            --text-gold: #f3de8a;
+            --text-gold-heading: #fce79e;
+            --border-gold: rgba(212, 175, 55, 0.5);
+            --card-border: #d4af37;
+            --text-light: #e0f2fe;
+            --text-muted: rgba(224, 242, 254, 0.75);
+            --inner-box-bg: rgba(0, 10, 25, 0.5);
+        }
+
+        .color-amethyst {
+            --bg-color: #12031a;
+            --card-bg: radial-gradient(circle at 50% 30%, #2f0a3e 0%, #0d0214 100%);
+            --text-gold: #f3de8a;
+            --text-gold-heading: #fce79e;
+            --border-gold: rgba(212, 175, 55, 0.5);
+            --card-border: #d4af37;
+            --text-light: #fae8ff;
+            --text-muted: rgba(250, 232, 255, 0.75);
+            --inner-box-bg: rgba(15, 0, 20, 0.5);
+        }
+
+        .color-ivory {
+            --bg-color: #1a1815;
+            --card-bg: radial-gradient(circle at 50% 30%, #fdfbf7 0%, #f4eee2 100%);
+            --text-gold: #855d10;
+            --text-gold-heading: #5c3e03;
+            --border-gold: rgba(184, 134, 11, 0.6);
+            --card-border: #b8860b;
+            --text-light: #2b2315;
+            --text-muted: rgba(43, 35, 21, 0.8);
+            --inner-box-bg: rgba(240, 230, 210, 0.6);
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .font-kannada { font-family: 'Noto Serif Kannada', serif; }
+        .font-sans-clean { font-family: 'Montserrat', sans-serif; }
+
+        .gold-text {
+            color: var(--text-gold);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+
+        .gold-heading {
+            color: var(--text-gold-heading);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Border Styles */
+        .card-container {
+            background: var(--card-bg);
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+        }
+
+        /* Style 1: Minimal Line */
+        .border-minimal {
+            border: 1px solid var(--border-gold);
+            outline: 1px solid var(--border-gold);
+            outline-offset: -8px;
+            border-radius: 1rem;
+        }
+
+        /* Style 2: Filigree Corner Accents */
+        .border-filigree {
+            border: 2px solid var(--card-border);
+            border-radius: 1rem;
+            position: relative;
+        }
+        .border-filigree::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px solid var(--border-gold);
+            border-radius: 0.75rem;
+            pointer-events: none;
+        }
+
+        /* Style 3: Temple Arch */
+        .border-arch {
+            border: 2px solid var(--card-border);
+            border-top-left-radius: 110px;
+            border-top-right-radius: 110px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: relative;
+        }
+        .border-arch-inner {
+            border: 1px solid var(--border-gold);
+            border-top-left-radius: 95px;
+            border-top-right-radius: 95px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        /* Style 4: Art Deco Geometric */
+        .border-deco {
+            border: 3px double var(--card-border);
+            border-radius: 0.5rem;
+            position: relative;
+        }
+        .border-deco::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px dashed var(--border-gold);
+            border-radius: 0.25rem;
+            pointer-events: none;
+        }
+
+        .shimmer-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f3de8a 50%, #b3871e 100%);
+            transition: all 0.3s ease;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .shimmer-btn:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .active-tab {
+            background-color: var(--card-border);
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* Standardized QR Code Container Canvas Fix */
+        .qr-box canvas, .qr-box img {
+            width: 85px !important;
+            height: 85px !important;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-6 px-3 sm:px-6 flex flex-col justify-between items-center color-emerald" id="body-root">
+
+    <!-- Control Header Bar -->
+    <header class="w-full max-w-4xl mb-6 bg-black/70 backdrop-blur-md border border-amber-500/30 rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 border-b border-amber-500/20 pb-3">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-300">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+                </div>
+                <div>
+                    <h1 class="font-cinzel text-base font-bold gold-text">Dheeraj & Kavyashri</h1>
+                    <p class="text-[11px] opacity-70">Royal Invitation Customizer</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <div class="bg-black/80 p-1 rounded-xl border border-amber-500/30 flex text-xs font-cinzel">
+                    <button onclick="switchLanguage('english')" id="lang-en" class="px-3 py-1 rounded-lg active-tab transition">EN</button>
+                    <button onclick="switchLanguage('kannada')" id="lang-kn" class="px-3 py-1 rounded-lg text-amber-200 hover:text-white transition">ಕನ್ನಡ</button>
+                </div>
+
+                <button onclick="downloadPNG()" class="shimmer-btn px-4 py-1.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-download"></i> Save PNG
+                </button>
+            </div>
+        </div>
+
+        <!-- Customization Options -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-cinzel">
+            <!-- Color Selector -->
+            <div class="flex items-center gap-2 bg-black/40 p-2 rounded-xl border border-amber-500/20">
+                <span class="text-amber-300 font-semibold uppercase text-[10px] tracking-wider shrink-0">Theme:</span>
+                <div class="flex items-center gap-2 overflow-x-auto w-full py-1">
+                    <button onclick="setColorTheme('emerald')" title="Emerald Green" class="w-6 h-6 rounded-full bg-emerald-900 border-2 border-amber-400 shrink-0 hover:scale-110 transition"></button>
+                    <button onclick="setColorTheme('ruby')" title="Crimson Ruby" class="w-6 h-6 rounded-full bg-rose-950 border-2 border-amber-400 shrink-0 hover:scale-110 transition"></button>
+                    <button onclick="setColorTheme('sapphire')" title="Midnight Sapphire" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-amber-400 shrink-0 hover:scale-110 transition"></button>
+                    <button onclick="setColorTheme('amethyst')" title="Velvet Amethyst" class="w-6 h-6 rounded-full bg-purple-950 border-2 border-amber-400 shrink-0 hover:scale-110 transition"></button>
+                    <button onclick="setColorTheme('ivory')" title="Regal Ivory" class="w-6 h-6 rounded-full bg-stone-200 border-2 border-amber-600 shrink-0 hover:scale-110 transition"></button>
+                </div>
+            </div>
+
+            <!-- Border Style Selector -->
+            <div class="flex items-center gap-2 bg-black/40 p-2 rounded-xl border border-amber-500/20">
+                <span class="text-amber-300 font-semibold uppercase text-[10px] tracking-wider shrink-0">Border:</span>
+                <div class="flex items-center gap-1.5 overflow-x-auto w-full">
+                    <button onclick="setBorderStyle('minimal')" id="b-minimal" class="px-2.5 py-1 rounded-lg bg-amber-500 text-black font-bold transition">Minimal</button>
+                    <button onclick="setBorderStyle('filigree')" id="b-filigree" class="px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-200 hover:text-white transition">Filigree</button>
+                    <button onclick="setBorderStyle('arch')" id="b-arch" class="px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-200 hover:text-white transition">Temple Arch</button>
+                    <button onclick="setBorderStyle('deco')" id="b-deco" class="px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-200 hover:text-white transition">Art Deco</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-container" class="w-full max-w-xl flex flex-col items-center justify-center my-auto">
+
+        <!-- ================= ENGLISH INVITATION ================= -->
+        <div id="card-english" class="w-full max-w-xl card-container border-minimal p-8 sm:p-11 relative text-center transition-all my-2">
+            
+            <div id="inner-wrapper-en" class="w-full h-full p-2">
+
+                <!-- Top Header / Invocation -->
+                <div class="mb-5 space-y-2">
+                    <p class="font-cinzel text-[11px] sm:text-xs tracking-[0.25em] gold-text uppercase font-semibold">
+                        ✦ Sri Kuladevatha Prasanna ✦
+                    </p>
+
+                    <!-- Lord Ganesha SVG Icon -->
+                    <div class="w-11 h-11 mx-auto my-2 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full fill-current gold-text">
+                            <path d="M50 5 C55 15, 60 15, 65 20 C70 25, 75 25, 75 35 C75 45, 65 50, 60 55 C58 57, 55 60, 55 65 C55 70, 58 75, 62 78 C65 80, 70 80, 72 75 C73 72, 70 68, 68 68 C66 68, 65 70, 65 72 C65 75, 60 72, 58 68 C55 62, 58 52, 65 45 C72 38, 80 35, 80 25 C80 12, 65 5, 50 5 Z M35 20 C30 20, 25 25, 25 35 C25 45, 35 50, 40 55 C42 57, 45 60, 45 65 C45 75, 35 85, 25 85 C20 85, 15 80, 15 75 C15 72, 18 70, 20 70 C22 70, 23 72, 23 75 C23 78, 28 78, 30 75 C35 70, 35 62, 30 55 C22 42, 20 30, 28 20 Z M50 15 C52 15, 54 17, 54 20 C54 23, 52 25, 50 25 C48 25, 46 23, 46 20 C46 17, 48 15, 50 15 Z" />
+                        </svg>
+                    </div>
+
+                    <!-- Parents Host Invitation -->
+                    <p class="font-cinzel text-[10px] tracking-[0.2em] uppercase opacity-80 pt-1">Cordially Inviting You</p>
+                    <h2 class="font-cinzel text-base sm:text-lg font-bold gold-heading">
+                        Smt. Hemalatha & Sri. Raghu Shettigar
+                    </h2>
+                    <p class="font-sans-clean text-[10px] opacity-75 uppercase tracking-wider">Kunchimane, Salikeri</p>
+                </div>
+
+                <p class="font-script text-xl sm:text-2xl opacity-90 my-3">
+                    request your presence at the wedding of their son
+                </p>
+
+                <!-- Couple Details Box -->
+                <div class="my-5 py-5 px-4 rounded-xl border border-amber-500/30 style-box text-center" style="background: var(--inner-box-bg);">
+                    
+                    <!-- Groom -->
+                    <h3 class="font-cinzel text-3xl sm:text-4xl font-extrabold gold-heading tracking-wide mb-1">
+                        Chi. Dheeraj
+                    </h3>
+                    <p class="text-[11px] opacity-80 italic font-serif">
+                        Grand S/o. Late Baccha Shettigar, Kunchimane<br/>
+                        <span class="text-[10px] gold-text">N/o. Mijaru Payyarbettu Dinesh Shettigar</span>
+                    </p>
+
+                    <!-- Divider -->
+                    <div class="flex items-center justify-center gap-3 my-3">
+                        <div class="h-px bg-amber-500/40 w-12"></div>
+                        <span class="font-script text-2xl gold-text">With</span>
+                        <div class="h-px bg-amber-500/40 w-12"></div>
+                    </div>
+
+                    <!-- Bride -->
+                    <h3 class="font-cinzel text-3xl sm:text-4xl font-extrabold gold-heading tracking-wide mb-1">
+                        Chi. Sou. Kavyashri
+                    </h3>
+                    <p class="text-[11px] opacity-80 italic font-serif">
+                        D/o. Smt. Roopa & Sri. Venugopala Shettigar, Rayi Badanadi Siddakatte<br/>
+                        <span class="text-[10px] gold-text">N/o. Ravindra Shettigar, Panjagar</span>
+                    </p>
+                </div>
+
+                <!-- Date & Muhurtham -->
+                <div class="my-5 space-y-1">
+                    <p class="font-cinzel text-base sm:text-xl font-bold gold-heading tracking-wide">
+                        Monday, 21<sup class="text-xs">st</sup> September 2026
+                    </p>
+                    <p class="text-xs sm:text-sm font-cinzel tracking-wider">
+                        Muhurtham: <span class="font-bold gold-text">10.12 AM</span> (Thula Lagnam)
+                    </p>
+                </div>
+
+                <!-- Venue & Dynamic Venue QR Code -->
+                <div class="my-5 p-4 rounded-xl border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left" style="background: var(--inner-box-bg);">
+                    <div class="space-y-1">
+                        <span class="font-cinzel text-[10px] tracking-[0.2em] gold-text font-bold uppercase block">Venue</span>
+                        <h4 class="font-cinzel text-base font-bold gold-heading">Ananda Banquet Hall</h4>
+                        <p class="text-xs opacity-85 font-serif">Hotel Ashraya, Brahmavara</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="p-1.5 bg-white rounded-lg shadow-md border border-amber-400 qr-box">
+                            <div id="qrcode-en"></div>
+                        </div>
+                        <span class="text-[9px] tracking-widest gold-text uppercase mt-1.5 font-cinzel font-bold">Scan For Directions</span>
+                    </div>
+                </div>
+
+                <!-- Compliments -->
+                <div class="mt-5 pt-3 border-t border-amber-500/20 text-center space-y-1">
+                    <p class="font-script text-lg gold-text">With Best Compliments From</p>
+                    <p class="font-cinzel text-xs font-semibold gold-heading">
+                        Smt. Pooja & Sri. Shivraj, Sandesh, Relatives & Friends
+                    </p>
+                    <p class="font-cinzel text-[10px] uppercase tracking-[0.2em] gold-text pt-2 block font-bold">
+                        • Presents in Blessings Only •
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= KANNADA INVITATION ================= -->
+        <div id="card-kannada" class="w-full max-w-xl card-container border-minimal p-8 sm:p-11 relative text-center hidden font-kannada transition-all my-2">
+            
+            <div id="inner-wrapper-kn" class="w-full h-full p-2">
+
+                <!-- Invocation Header -->
+                <div class="mb-4">
+                    <p class="text-xs tracking-widest gold-text font-bold mb-2">
+                        || ಶ್ರೀ ಕುಲದೇವತಾ ಪ್ರಸನ್ನ ||
+                    </p>
+                    <div class="w-11 h-11 mx-auto my-1 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full fill-current gold-text">
+                            <path d="M50 5 C55 15, 60 15, 65 20 C70 25, 75 25, 75 35 C75 45, 65 50, 60 55 C58 57, 55 60, 55 65 C55 70, 58 75, 62 78 C65 80, 70 80, 72 75 C73 72, 70 68, 68 68 C66 68, 65 70, 65 72 C65 75, 60 72, 58 68 C55 62, 58 52, 65 45 C72 38, 80 35, 80 25 C80 12, 65 5, 50 5 Z M35 20 C30 20, 25 25, 25 35 C25 45, 35 50, 40 55 C42 57, 45 60, 45 65 C45 75, 35 85, 25 85 C20 85, 15 80, 15 75 C15 72, 18 70, 20 70 C22 70, 23 72, 23 75 C23 78, 28 78, 30 75 C35 70, 35 62, 30 55 C22 42, 20 30, 28 20 Z M50 15 C52 15, 54 17, 54 20 C54 23, 52 25, 50 25 C48 25, 46 23, 46 20 C46 17, 48 15, 50 15 Z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-xs opacity-90 leading-relaxed">
+                    <p>ಶ್ರೀಮತಿ ಹೇಮಲತಾ ಮತ್ತು ಶ್ರೀ ರಘು ಶೆಟ್ಟಿಗಾರ (ಕುಂಚಿಮನೆ, ಸಾಲಿಕೇರಿ)</p>
+                    <p class="pt-1 gold-heading font-semibold">ಇವರು ತಮ್ಮ ಪುತ್ರನ ಶುಭ ವಿವಾಹಕ್ಕೆ ವಿನಮ್ರವಾಗಿ ಆಹ್ವಾನಿಸುತ್ತಿದ್ದಾರೆ.</p>
+                </div>
+
+                <!-- Couple Box Kannada -->
+                <div class="my-4 py-5 px-4 rounded-xl border border-amber-500/30 text-center" style="background: var(--inner-box-bg);">
+                    <h3 class="text-3xl sm:text-4xl font-extrabold gold-heading my-1">
+                        ಚಿ|| ಧೀರಜ್
+                    </h3>
+                    <p class="text-[11px] opacity-80">
+                        ಕುಂಚಿಮನೆ ದಿ. ಬಚ್ಚ ಶೆಟ್ಟಿಗಾರರ ಮೊಮ್ಮಗ,<br/>
+                        ಮಿಜಾರು ಪಯ್ಯಾರಬೆಟ್ಟು ದಿನೇಶ ಶೆಟ್ಟಿಗಾರರ ಅಳಿಯ
+                    </p>
+
+                    <div class="gold-text font-script text-2xl my-2">ಮತ್ತು</div>
+
+                    <h3 class="text-3xl sm:text-4xl font-extrabold gold-heading my-1">
+                        ಚಿ|| ಸೌ|| ಕಾವ್ಯಶ್ರೀ
+                    </h3>
+                    <p class="text-[11px] opacity-80">
+                        ಶ್ರೀಮತಿ ರೂಪಾ ಮತ್ತು ಶ್ರೀ ವೇಣುಗೋಪಾಲ ಶೆಟ್ಟಿಗಾರ (ರಾಯಿ ಬದನಾಡಿ ಸಿದ್ಧಕಟ್ಟೆ) ಇವರ ದ್ವಿತೀಯ ಪುತ್ರಿ,<br/>
+                        ಪಂಜಂಗಾರ್ ರವೀಂದ್ರ ಶೆಟ್ಟಿಗಾರ ಇವರ ಸೊಸೆ
+                    </p>
+                </div>
+
+                <!-- Date & Muhurtham Kannada -->
+                <div class="my-4 text-xs sm:text-sm leading-relaxed space-y-1">
+                    <p>ದಿನಾಂಕ : <b class="gold-heading text-base">21-09-2026</b> ನೇ ಸೋಮವಾರ</p>
+                    <p>ಸುಮುಹೂರ್ತ : <b class="gold-text">ಬೆಳಿಗ್ಗೆ 10.12 ಕ್ಕೆ</b> (ತುಲಾ ಲಗ್ನ)</p>
+                    <p class="pt-2 font-bold gold-heading">"ಆನಂದ ಬ್ಯಾಂಕ್ವೆಟ್ ಹಾಲ್" ಹೋಟೆಲ್ ಆಶ್ರಯ, ಬ್ರಹ್ಮಾವರ</p>
+                </div>
+
+                <!-- QR Code Kannada -->
+                <div class="my-5 p-3 rounded-xl border border-amber-500/30 flex items-center justify-between max-w-sm mx-auto" style="background: var(--inner-box-bg);">
+                    <div class="text-left">
+                        <span class="text-xs uppercase gold-text font-bold block">ಸ್ಥಳದ ಮಾರ್ಗಸೂಚಿ</span>
+                        <p class="text-[10px] opacity-80">ದಿಕ್ಕುಗಳನ್ನು ಪಡೆಯಲು QR ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</p>
+                    </div>
+                    <div class="p-1.5 bg-white rounded-lg shadow-md border border-amber-400 qr-box">
+                        <div id="qrcode-kn"></div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-amber-500/20 text-xs">
+                    <p class="gold-text font-bold">ತಮ್ಮ ಆಗಮನಾಭಿಲಾಷಿಗಳು</p>
+                    <p class="gold-heading font-bold text-sm">ಶ್ರೀಮತಿ ಹೇಮಲತಾ ಮತ್ತು ಶ್ರೀ ರಘು ಶೆಟ್ಟಿಗಾರ</p>
+                    <p class="opacity-80 text-[11px]">ಶ್ರೀಮತಿ ಪೂಜಾ ಮತ್ತು ಶ್ರೀ ಶಿವರಾಜ್, ಸಂದೇಶ್ ಹಾಗೂ ಬಂಧು-ಮಿತ್ರರು</p>
+                    <p class="text-[10px] tracking-widest gold-text pt-2 block font-bold">• ಆಗಮನವೇ ಉಡುಗೊರೆ •</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="w-full max-w-xl my-6 flex flex-wrap justify-center items-center gap-3">
+        <a href="https://maps.google.com/?cid=15069319892028350625" target="_blank" class="bg-black/60 hover:bg-black/80 text-amber-300 border border-amber-500/30 px-4 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-2 transition">
+            <i class="fa-solid fa-map-location-dot text-amber-400"></i> Open Google Maps
+        </a>
+
+        <button onclick="addToCalendar()" class="bg-black/60 hover:bg-black/80 text-amber-300 border border-amber-500/30 px-4 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-2 transition">
+            <i class="fa-regular fa-calendar-plus text-amber-400"></i> Add to Calendar
+        </button>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-amber-400 text-emerald-950 px-6 py-2 rounded-full shadow-2xl font-bold text-xs sm:text-sm opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Updated!</span>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const VENUE_MAP_URL = "https://maps.google.com/?cid=15069319892028350625";
+        let currentTheme = 'emerald';
+        let currentBorder = 'minimal';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Generate Venue QR Codes using high resolution rendering canvas (200x200)
+            const qrEnContainer = document.getElementById("qrcode-en");
+            const qrKnContainer = document.getElementById("qrcode-kn");
+
+            if (qrEnContainer) {
+                qrEnContainer.innerHTML = '';
+                new QRCode(qrEnContainer, {
+                    text: VENUE_MAP_URL,
+                    width: 200,
+                    height: 200,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+
+            if (qrKnContainer) {
+                qrKnContainer.innerHTML = '';
+                new QRCode(qrKnContainer, {
+                    text: VENUE_MAP_URL,
+                    width: 200,
+                    height: 200,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        });
+
+        function setColorTheme(theme) {
+            currentTheme = theme;
+            const body = document.getElementById('body-root');
+            body.className = `min-h-screen py-6 px-3 sm:px-6 flex flex-col justify-between items-center color-${theme}`;
+            showToast(`Theme changed to ${theme.toUpperCase()}`);
+        }
+
+        function setBorderStyle(style) {
+            currentBorder = style;
+            const cards = [document.getElementById('card-english'), document.getElementById('card-kannada')];
+            const innerEn = document.getElementById('inner-wrapper-en');
+            const innerKn = document.getElementById('inner-wrapper-kn');
+
+            // Reset border tab active states
+            ['minimal', 'filigree', 'arch', 'deco'].forEach(b => {
+                const btn = document.getElementById(`b-${b}`);
+                if (btn) {
+                    if (b === style) {
+                        btn.className = "px-2.5 py-1 rounded-lg bg-amber-500 text-black font-bold transition";
+                    } else {
+                        btn.className = "px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-200 hover:text-white transition";
+                    }
+                }
+            });
+
+            cards.forEach(card => {
+                card.className = card.className.replace(/border-\w+/g, '').trim();
+                card.classList.add(`border-${style}`);
+            });
+
+            if (style === 'arch') {
+                innerEn.className = "border-arch-inner w-full h-full p-4 sm:p-6";
+                innerKn.className = "border-arch-inner w-full h-full p-4 sm:p-6";
+            } else {
+                innerEn.className = "w-full h-full p-2";
+                innerKn.className = "w-full h-full p-2";
+            }
+
+            showToast(`Border set to ${style.toUpperCase()}`);
+        }
+
+        function switchLanguage(lang) {
+            const cardEn = document.getElementById('card-english');
+            const cardKn = document.getElementById('card-kannada');
+            const btnEn = document.getElementById('lang-en');
+            const btnKn = document.getElementById('lang-kn');
+
+            if (lang === 'english') {
+                btnEn.className = "px-3 py-1 rounded-lg active-tab transition";
+                btnKn.className = "px-3 py-1 rounded-lg text-amber-200 hover:text-white transition";
+                cardEn.classList.remove('hidden');
+                cardKn.classList.add('hidden');
+            } else {
+                btnKn.className = "px-3 py-1 rounded-lg active-tab transition";
+                btnEn.className = "px-3 py-1 rounded-lg text-amber-200 hover:text-white transition";
+                cardKn.classList.remove('hidden');
+                cardEn.classList.add('hidden');
+            }
+        }
+
+        async function downloadPNG() {
+            const isKannadaVisible = !document.getElementById('card-kannada').classList.contains('hidden');
+            const cardId = isKannadaVisible ? 'card-kannada' : 'card-english';
+            const langName = isKannadaVisible ? 'Kannada' : 'English';
+            const cardElement = document.getElementById(cardId);
+
+            showToast("Generating High-Resolution PNG...");
+
+            const origWidth = cardElement.style.width;
+            const origMaxWidth = cardElement.style.maxWidth;
+
+            try {
+                if (document.fonts) {
+                    await document.fonts.ready;
+                }
+
+                // Standardize width for high-DPI crisp capture
+                cardElement.style.width = '720px';
+                cardElement.style.maxWidth = '720px';
+
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                const canvas = await html2canvas(cardElement, {
+                    scale: 4, // 2880px Ultra-HD Resolution output
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false,
+                    windowWidth: 1400
+                });
+
+                cardElement.style.width = origWidth;
+                cardElement.style.maxWidth = origMaxWidth;
+
+                const link = document.createElement('a');
+                link.download = `Dheeraj_Kavyashri_Wedding_Invite_${currentTheme}_${langName}.png`;
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                showToast("Ultra-HD PNG Saved!");
+            } catch (err) {
+                cardElement.style.width = origWidth;
+                cardElement.style.maxWidth = origMaxWidth;
+                console.error(err);
+                showToast("Error generating PNG image.");
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
+
+        function addToCalendar() {
+            const title = encodeURIComponent("Wedding Ceremony: Dheeraj & Kavyashri");
+            const details = encodeURIComponent("Wedding ceremony of Chi. Dheeraj with Chi. Sou. Kavyashri. Muhurtham: 10.12 AM.");
+            const location = encodeURIComponent("Ananda Banquet Hall, Hotel Ashraya, Brahmavara");
+            const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260921T044200Z/20260921T083000Z&details=${details}&location=${location}`;
+            window.open(gCalUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
